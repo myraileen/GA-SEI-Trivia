@@ -13,3 +13,18 @@ body {
     display: flex;
     align-items: center;
 }
+
+.card {
+    background-color: wheat;
+}
+
+.scores {
+    display: flex;
+    flex-direction: row;
+}
+
+.choices {
+    list-style: none;
+    line-height: 3pc;
+    line-break: strict;
+}

@@ -6,31 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Crete+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    
+
     <title>Document</title>
 </head>
 
 <body>
     <header>trivia</header>
-
-    <section class='canvas'>
-        <div class='card'>
+    <main>
+        <section class='card'>
             <div class='category'>Art</div>
             <div class='question'>Who painted The Starry Night</div>
-            <div class='choices'>
-                <div p>Pablo Picasso</div>
-                <div p>Leonardo da Vinci</div>
-                <div p>Vincent van Gogh</div>
-            </div>
-        </div>
-    </section>
-
-    <section class='scores'></section>
-        <div id='correct'>0</div>
-        <div id='incorrect'>0</div>
-
+        </section>
+        <section class='choices'>
+            <p>Pablo Picasso</p>
+            <p>Leonardo da Vinci</p>
+            <p>Vincent van Gogh</p>
+        </section>
+        <section class='scores'>
+            <div id='correct'>0</div>
+            <div id='incorrect'>0</div>
+        </section>
+    </main>
+    <aside></aside>
     <footer></footer>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src='./js/script.js'></script>
 </body>
+
 </html>
