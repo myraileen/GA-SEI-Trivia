@@ -1,0 +1,15 @@
+* {
+    border: 1px solid black;
+    font-family: 'Crete Round', serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.canvas {
+    display: flex;
+    align-items: center;
+}
