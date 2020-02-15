@@ -8,6 +8,16 @@ body {
     align-items: center;
     flex-direction: column;
 }
+.category {
+    text-align: center;
+    font-size: 1.5pc;
+}
+
+.question {
+    text-align: center;
+    font-size: 1.5pc;
+    padding: 1.5pc;
+}
 
 .canvas {
     display: flex;
@@ -21,10 +31,13 @@ body {
 .scores {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    text-align: center;
 }
 
 .choices {
     list-style: none;
     line-height: 3pc;
     line-break: strict;
+    text-align: center;
 }
