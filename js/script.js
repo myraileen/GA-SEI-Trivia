@@ -5,7 +5,8 @@ const choicesElement = document.querySelector('.choices')
 const guessesElement = document.querySelectorAll('.guess')
 const correctScoreElement = document.querySelector('#correct')
 const incorrectScoreElement = document.querySelector('#incorrect')
-//const categoryElement = document.querySelector('.category')
+const categoryElement = document.querySelector('#selectCategory')
+const questionCount = document.querySelector('#selectCount')
 const remainingElement = document.querySelector('.remaining')
 
 //global variables
@@ -17,6 +18,7 @@ let sessionToken = ''
 //17 - Science and Nature
 //22 - Geography
 //23 - History
+let categoryIndex = 0
 let categoryChoice = ''
 //max questions allowed by api is 50
 let howManyQuestions = 0
@@ -28,14 +30,7 @@ let correctAnswer = ''
 let correct = 0
 let incorrect = 0
 
-//set options
-categoryChoice = 'History'
-howManyQuestions = 300
-
 //connect to api and retrieve a session token: including the token in question api calls will prevent duplicates in the response data while the token is active (6 hours max)
-// let sessionToken = getTriviaApiData('https://opentdb.com/api_token.php?command=request')
-// console.log(sessionToken)
-
 function getSessionToken() {
     axios({
         url: 'https://opentdb.com/api_token.php?command=request',
@@ -49,8 +44,8 @@ function getSessionToken() {
         })
 }
 getSessionToken()
-// getSessionToken()
 
+////attempted to write a reusable function to get api data... but it wasn't working... keeping attempt to revisit
 // function getTriviaApiData(inUrl) {
 //     //console.log(inUrl)
 //     axios({
@@ -66,8 +61,12 @@ getSessionToken()
 //             console.log(error)
 //         })
 // }
-
-//retrieve a batch of questions for a new game
+////get session token
+// function getSessionToken() {
+// let sessionToken = getTriviaApiData('https://opentdb.com/api_token.php?command=request')
+// console.log(sessionToken)
+// }
+////retrieve a batch of questions for a new game
 // function getQuestions() {
 //     //clear question variable to accept new questions
 //     playedQuestions = 0
@@ -82,9 +81,13 @@ function getQuestions() {
     //clear question variable to accept new questions
     playedQuestions = 0
     questionQueue = []
+    categoryIndex = categoryElement
+    categoryChoice = categoryElement.value
+    questionCountIndex = questionCount
+    howManyQuestions = questionCountIndex.value
     //retrieve questions data
     axios({
-        url: `https://opentdb.com/api.php?amount=${howManyQuestions}&category=22&type=multiple&token=${sessionToken}`,
+        url: `https://opentdb.com/api.php?amount=${howManyQuestions}&category=${categoryChoice}&type=multiple&token=${sessionToken}`,
         method: 'get'
     })
         .then(response => {
@@ -94,16 +97,6 @@ function getQuestions() {
         .catch(error => {
             console.log(error)
         })
-}
-
-const selectAnswer = function (event) {
-    console.log(`click! ${event}`)
-
-    //do a check on questionsRemaining... if it is the last question, end game after selection is made
-
-    // let guessClick = ''
-    // guessClick = event.target.id
-    // console.log(guessClick)
 }
 
 //load a question into the game and reduce the remaining question counter
@@ -149,12 +142,20 @@ function writeChoices(choices) {
     })
 }
 
+const selectAnswer = function (event) {
+    console.log(`click! ${event}`)
+
+    //do a check on questionsRemaining... if it is the last question, end game after selection is made
+
+    // let guessClick = ''
+    // guessClick = event.target.id
+    // console.log(guessClick)
+}
+
 function activateGuesses() {
     guessesElement.forEach(guess => {
         console.log(`listen ${guess}`)
-        guess.addEventListener('click', event => {
-            selectAnswer
-        })
+        guess.addEventListener('click', selectAnswer)
     })
 }
 
@@ -173,7 +174,9 @@ function shuffle(array) {
     }
 }
 
+function startGame () {
 getQuestions()
+}
 
 //testing revealed api data contains special characters needing string translation
 function translateSpecials(str) {
