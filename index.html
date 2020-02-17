@@ -4,30 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Crete+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 
     <title>Document</title>
 </head>
 
 <body>
-    <header>header</header>
-    <main>
-        <section class='card'>
-            <div class='category'>History Trivia</div>
-            <div class='question'></div>
-        </section>
-        <section class='choices'>
+    <section class='controls'>
+        <select id='selectCount'>
+            <option value="5">5 questions</option>
+            <option value="15">15 questions</option>
+        </select>
+        <select id='selectCategory'>
+            <option value="23">History</option>
+            <option value="22">Geography</option>
+        </select>
+        <button id='nextButton'> --> </button>
+    </section>
+
+    <section class='card'>
+       <div class='question'></div>
+        <div class='choices'>
             <p class='guess'></p>
             <p class='guess'></p>
             <p class='guess'></p>
-        </section>
-        <section class='scores'>
-            <div id='correct'>0</div>
-            <div id='incorrect'>0</div>
-        </section>
-    </main>
-    <aside></aside>
+        </div>
+    </section>
+
+    <section class='scores'>
+        <div class=remaining></div>
+        <div id='correct'>Correct 0</div>
+        <div id='incorrect'>Incorrect 0</div>
+    </section>
+
+    
     <footer></footer>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
