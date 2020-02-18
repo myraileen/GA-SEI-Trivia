@@ -21,26 +21,27 @@
             <option value="17">Science & Nature</option>
             <option value="23">History</option>
             <option value="22">Geography</option>
+            <option value="11">Film</option>
+            <option value="12">Music</option>
         </select>
-        <button id='nextButton' onclick="startGame()"> --> </button>
+        <button id='gameButton' onclick="startGame()"> --> </button>
     </section>
 
     <section class='card'>
-       <div class='question'></div>
+        <div class='question'></div>
         <div class='choices'>
+            <!-- <p class='guess'></p>
             <p class='guess'></p>
-            <p class='guess'></p>
-            <p class='guess'></p>
+            <p class='guess'></p> -->
         </div>
     </section>
 
     <section class='scores'>
-        <div class=remaining></div>
         <div id='correct'>Correct 0</div>
         <div id='incorrect'>Incorrect 0</div>
     </section>
 
-    
+
     <footer></footer>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

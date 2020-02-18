@@ -2,25 +2,17 @@
 //document selectors
 const questionElement = document.querySelector('.question')
 const choicesElement = document.querySelector('.choices')
-const guessesElement = document.querySelectorAll('.guess')
+const guessesElement = document.querySelector('.guess')
 const correctScoreElement = document.querySelector('#correct')
 const incorrectScoreElement = document.querySelector('#incorrect')
 const categoryElement = document.querySelector('#selectCategory')
-const questionCount = document.querySelector('#selectCount')
-const remainingElement = document.querySelector('.remaining')
+const questionCountElement = document.querySelector('#selectCount')
+const gameButton = document.querySelector('#gameButton')
 
 //global variables
 let sessionToken = ''
-//categories with several questions includes:
-//9 - General Knowledge
-//11 - Entertainment - film
-//12 - Entertainment - music
-//17 - Science and Nature
-//22 - Geography
-//23 - History
 let categoryIndex = 0
 let categoryChoice = ''
-//max questions allowed by api is 50
 let howManyQuestions = 0
 let playedQuestions = 0
 let remainingQuestions = 0
@@ -80,11 +72,17 @@ getSessionToken()
 function getQuestions() {
     //clear question variable to accept new questions
     playedQuestions = 0
+    correct = 0
+    incorrect = 0
     questionQueue = []
     categoryIndex = categoryElement
+    categoryElement.disabled = true
     categoryChoice = categoryElement.value
-    questionCountIndex = questionCount
-    howManyQuestions = questionCountIndex.value
+    questionCountElement.disabled = true
+    howManyQuestions = questionCountElement.value
+    gameButton.textContent = 'next question'
+    gameButton.onclick = function () { nextQuestion() }
+    gameButton.disabled = true
     //retrieve questions data
     axios({
         url: `https://opentdb.com/api.php?amount=${howManyQuestions}&category=${categoryChoice}&type=multiple&token=${sessionToken}`,
@@ -104,7 +102,6 @@ function nextQuestion() {
     let question = questionQueue.shift()
     playedQuestions = playedQuestions + 1
     questionsRemaining = howManyQuestions - playedQuestions
-    remainingElement.textContent = `Answered ${playedQuestions}`
 
     //assign question text and answer
     questionElement.textContent = translateSpecials(question.question)
@@ -117,7 +114,7 @@ function nextQuestion() {
     writeChoices(responseChoices)
 
     //setup listener for player's answer
-    activateGuesses()
+    //activateGuesses()
 }
 
 //reset choices
@@ -138,25 +135,35 @@ function writeChoices(choices) {
         let newP = document.createElement('p')
         newP.textContent = translateSpecials(choice)
         newP.setAttribute('class', 'guess')
+        newP.addEventListener('click', selectAnswer)
         choicesElement.appendChild(newP)
     })
 }
 
 const selectAnswer = function (event) {
-    console.log(`click! ${event}`)
+    gameButton.disabled = false
+    let guessClick = ''
+    guessClick = event.target.innerHTML
+    correctAnswer === guessClick ? correct = correct + 1 : incorrect = incorrect + 1
+    correctScoreElement.textContent = `correct ${correct}`
+    incorrectScoreElement.textContent = `incorrect ${incorrect}`
+    if (questionsRemaining > 0) {
+    } else {
+        endGame()
+    }
+
+
+    // if questionsRemaining = 0
 
     //do a check on questionsRemaining... if it is the last question, end game after selection is made
-
-    // let guessClick = ''
-    // guessClick = event.target.id
-    // console.log(guessClick)
 }
 
-function activateGuesses() {
-    guessesElement.forEach(guess => {
-        console.log(`listen ${guess}`)
-        guess.addEventListener('click', selectAnswer)
-    })
+function endGame() {
+    categoryElement.disabled = false
+    questionCountElement.disabled = false
+    gameButton.textContent = '=>'
+    gameButton.onclick = function () { startGame() }
+    alert(correct > incorrect ? 'you won' : 'loser')
 }
 
 //Fisher-Yates Algorithm to randomly shuffle an array
@@ -174,8 +181,8 @@ function shuffle(array) {
     }
 }
 
-function startGame () {
-getQuestions()
+function startGame() {
+    getQuestions()
 }
 
 //testing revealed api data contains special characters needing string translation
