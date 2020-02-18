@@ -32,7 +32,7 @@ function getSessionToken() {
             sessionToken = [response.data.token]
         })
         .catch(error => {
-            console.log(error)
+            alert(`whoops! couldn't connect to the database. [${error}]`)
         })
 }
 getSessionToken()
@@ -70,7 +70,7 @@ getSessionToken()
 
 //connect to open trivia database api and retrieve a batch of questions for a new game
 function getQuestions() {
-    //clear question variable to accept new questions
+    //reset game variables for a new game
     questionElement.textContent = ''
     questionElement.classList.replace('incorrect','question')
     playedQuestions = 0
@@ -85,6 +85,7 @@ function getQuestions() {
     gameButton.textContent = '⇨'
     gameButton.onclick = function () { nextQuestion() }
     gameButton.disabled = true
+
     //retrieve questions data
     axios({
         url: `https://opentdb.com/api.php?amount=${howManyQuestions}&category=${categoryChoice}&type=multiple&token=${sessionToken}`,
@@ -95,11 +96,11 @@ function getQuestions() {
             nextQuestion()
         })
         .catch(error => {
-            console.log(error)
+            alert(`whoops! couldn't connect to the database. [${error}]`)
         })
 }
 
-//load a question into the game and reduce the remaining question counter
+//load a question into the game and reduce the game's remaining question counter
 function nextQuestion() {
     let question = questionQueue.shift()
     playedQuestions = playedQuestions + 1
@@ -108,34 +109,26 @@ function nextQuestion() {
     //assign question text and answer
     questionElement.textContent = translateSpecials(question.question)
     correctAnswer = translateSpecials(question.correct_answer)
-    console.log(correctAnswer)
     let responseChoices = (question.incorrect_answers)
     responseChoices.push(correctAnswer)
+    console.log(correctAnswer)
 
-    //shuffle choices and assign to dom (correct answer needs to be shuffled into incorrect answers)
+    //assign answer text
     writeChoices(responseChoices)
-
-    //setup listener for player's answer
-    //activateGuesses()
-}
-
-//reset choices
-function clearChoices() {
-    let i = 0
-    while (i < choicesElement.childElementCount) {
-        choicesElement.removeChild(choicesElement.firstChild)
-    }
 }
 
 //shuffle choices
 function writeChoices(choices) {
     //clear previously assigned choices
     clearChoices()
+
     //disable next question button
     gameButton.disabled = true
-    //shuffle choices
+
+    //shuffle choices (the correct answer needs to be shuffled into incorrect answers)
     shuffle(choices)
-    //listen for player's guess
+
+    //create listener for player's guess
     choices.forEach(function (choice) {
         let newP = document.createElement('p')
         newP.textContent = translateSpecials(choice)
@@ -145,6 +138,15 @@ function writeChoices(choices) {
     })
 }
 
+//reset choices (clears answers from the game card)
+function clearChoices() {
+    let i = 0
+    while (i < choicesElement.childElementCount) {
+        choicesElement.removeChild(choicesElement.firstChild)
+    }
+}
+
+//behavior when player chooses thier answer (disable listener for subsequent answers, provide answer feedback and enable next question to be played)
 const selectAnswer = function (event) { 
     disableListen()
     gameButton.disabled = false
@@ -156,7 +158,6 @@ const selectAnswer = function (event) {
     correctScoreElement.textContent = `correct ${correct}`
     incorrectScoreElement.textContent = `incorrect ${incorrect}`
 
-    
     if (questionsRemaining > 0) {
     } else {
         endGame()
@@ -186,7 +187,7 @@ function endGame() {
     questionCountElement.disabled = false
     gameButton.textContent = '↻'
     gameButton.onclick = function () { startGame() }
-    correct > incorrect ? questionElement.textContent = 'Y O U    W O N !' : questionElement.textContent = 'T R Y A G A I N .'
+    correct > incorrect ? questionElement.textContent = 'Y O U W O N !' : questionElement.textContent = 'T R Y A G A I N .'
     correct > incorrect ? '' : questionElement.classList.replace('question','incorrect')
 }
 

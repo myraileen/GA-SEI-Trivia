@@ -1,5 +1,4 @@
 * {
-    /* border: 1px solid black; */
     font-family: 'Ubuntu', serif;
 }
 
@@ -21,14 +20,12 @@ body {
 }
 
 .controls > #selectCount {
-    /* display: flex; */
     order: 2;
     font-size: large;
     padding: 1vh;
 }
 
 .controls > #selectCategory {
-    /* display: flex; */
     order: 1;
     font-size: large;
     text-align: center;
@@ -36,7 +33,6 @@ body {
 }
 
 .controls > #gameButton {
-    /* padding-inline-start: 2%; */
     order: 3;
     text-align: center;
     animation: ease-in;
@@ -48,6 +44,7 @@ body {
         background: #4C8FFB;
         border: 1px rgb(39, 108, 219) solid;
         box-shadow: inset 0 4px 0 #80B0FB;
+        padding: 1vh;
     }
     
     #gameButton:hover {
@@ -83,17 +80,8 @@ body {
 }
 
 .choices > p {
-    text-align: center;
-    /* flex-basis: fill; */
-    /* box-sizing: border-box; */
-    /* height: 100%; */
     font-size: large;
     align-content: stretch;
-    /* padding-inline-start:  10vmin;
-    padding-inline-end:  10vmax; */
-    /* flex-grow: 2; */
-    /* padding-top: 5vmin;
-    padding-bottom: 5vmin; */
     padding: 1vh;
 }
 
@@ -102,7 +90,6 @@ body {
 }
 
 .scores {
-    /* display: flex; */
     display: inline;
     text-align: center;
     align-content: center;
