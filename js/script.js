@@ -75,6 +75,7 @@ function getQuestions() {
     correct = 0
     incorrect = 0
     questionQueue = []
+    questionElement.classList.replace('incorrect','question')
     categoryIndex = categoryElement
     categoryElement.disabled = true
     categoryChoice = categoryElement.value
