@@ -80,7 +80,7 @@ function getQuestions() {
     categoryChoice = categoryElement.value
     questionCountElement.disabled = true
     howManyQuestions = questionCountElement.value
-    gameButton.textContent = 'next question'
+    gameButton.textContent = '⇨'
     gameButton.onclick = function () { nextQuestion() }
     gameButton.disabled = true
     //retrieve questions data
@@ -105,7 +105,7 @@ function nextQuestion() {
 
     //assign question text and answer
     questionElement.textContent = translateSpecials(question.question)
-    correctAnswer = question.correct_answer
+    correctAnswer = translateSpecials(question.correct_answer)
     console.log(correctAnswer)
     let responseChoices = (question.incorrect_answers)
     responseChoices.push(correctAnswer)
@@ -140,18 +140,33 @@ function writeChoices(choices) {
     })
 }
 
-const selectAnswer = function (event) {
+const selectAnswer = function (event) { 
+    disableListen()
     gameButton.disabled = false
     let guessClick = ''
     guessClick = event.target.innerHTML
     correctAnswer === guessClick ? correct = correct + 1 : incorrect = incorrect + 1
+    correctAnswer === guessClick ? event.target.classList.add('correct') : event.target.classList.add('incorrect')
+   
     correctScoreElement.textContent = `correct ${correct}`
     incorrectScoreElement.textContent = `incorrect ${incorrect}`
+    
     if (questionsRemaining > 0) {
     } else {
         endGame()
     }
 
+ //remove event listener - to refactor
+ function disableListen() {
+    document.querySelectorAll('.guess')[0].removeEventListener('click',selectAnswer)
+    document.querySelectorAll('.guess')[1].removeEventListener('click',selectAnswer)
+    document.querySelectorAll('.guess')[2].removeEventListener('click',selectAnswer)
+    document.querySelectorAll('.guess')[3].removeEventListener('click',selectAnswer)
+    document.querySelectorAll('.guess')[0].classList.remove('guess')
+    document.querySelectorAll('.guess')[0].classList.remove('guess')
+    document.querySelectorAll('.guess')[0].classList.remove('guess')
+    document.querySelectorAll('.guess')[0].classList.remove('guess')
+ }
 
     // if questionsRemaining = 0
 
@@ -161,7 +176,7 @@ const selectAnswer = function (event) {
 function endGame() {
     categoryElement.disabled = false
     questionCountElement.disabled = false
-    gameButton.textContent = '=>'
+    gameButton.textContent = '↻'
     gameButton.onclick = function () { startGame() }
     alert(correct > incorrect ? 'you won' : 'you lost')
 }
