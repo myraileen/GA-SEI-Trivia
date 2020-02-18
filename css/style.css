@@ -24,6 +24,7 @@ body {
     /* display: flex; */
     order: 2;
     font-size: large;
+    padding: 1vh;
 }
 
 .controls > #selectCategory {
@@ -72,18 +73,15 @@ body {
 }
 
 .correct {
-    display: flex;
     background-color: yellowgreen;
 }
 
 .incorrect {
     background-color: rgb(197, 106, 106) ;
+    padding: 5vmin;
 }
 
-.card > .choices > p {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+.choices > p {
     text-align: center;
     /* flex-basis: fill; */
     /* box-sizing: border-box; */

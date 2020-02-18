@@ -178,11 +178,14 @@ const selectAnswer = function (event) {
 }
 
 function endGame() {
+    clearChoices()
+    
     categoryElement.disabled = false
     questionCountElement.disabled = false
     gameButton.textContent = '↻'
     gameButton.onclick = function () { startGame() }
-    alert(correct > incorrect ? 'you won' : 'you lost')
+    correct > incorrect ? questionElement.textContent = 'Y O U    W O N !' : questionElement.textContent = 'T R Y A G A I N .'
+    correct > incorrect ? '' : questionElement.classList.replace('question','incorrect')
 }
 
 //Fisher-Yates Algorithm to randomly shuffle an array
