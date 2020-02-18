@@ -163,7 +163,7 @@ function endGame() {
     questionCountElement.disabled = false
     gameButton.textContent = '=>'
     gameButton.onclick = function () { startGame() }
-    alert(correct > incorrect ? 'you won' : 'loser')
+    alert(correct > incorrect ? 'you won' : 'you lost')
 }
 
 //Fisher-Yates Algorithm to randomly shuffle an array
@@ -190,6 +190,9 @@ function translateSpecials(str) {
     str = str.replace(('&ldquo;', 'gi'), '"')
     str = str.replace(('&rdquo;', 'gi'), '"')
     str = str.replace(('&quot;', 'gi'), '"')
+    str = str.replace('&ldquo;', '"')
+    str = str.replace('&rdquo;', '"')
+    str = str.replace('&quot;', '"')
     str = str.replace('&amp;', '&')
     str = str.replace('&quot;', '"')
     str = str.replace('&quot;', '"')
@@ -202,6 +205,7 @@ function translateSpecials(str) {
     str = str.replace('&atilde;', 'ã')
     str = str.replace(('&oacute;', 'gi'), 'ó')
     str = str.replace('&oacute;', 'ó')
+    str = str.replace('&Eacute;', 'É')
     str = str.replace(('&lt;', 'gi'), '<')
     str = str.replace(('&gt;', 'gi'), '>')
     str = str.replace(('&shy;', 'gi'), '-')
