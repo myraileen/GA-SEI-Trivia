@@ -4,37 +4,42 @@
 }
 
 body {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
-    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
     /* height: 400px ; */
-    margin: 1em;
+    margin: auto repeat(2px, 4);
 }
 .controls {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 2;
     text-align: center;
-    display: grid;
-    grid-row: 1 / span 1;
-    grid-column: 1;
-    grid-template-rows: 1fr 1fr 2fr;
-    background-color: linen;
+    padding: 2vh;
+    background-color: rgb(209, 156, 156);
 }
 
 .controls > #selectCount {
-    grid-row: 2;
+    /* display: flex; */
+    order: 2;
     font-size: large;
 }
 
 .controls > #selectCategory {
-    grid-row: 1;
+    /* display: flex; */
+    order: 1;
     font-size: large;
     text-align: center;
 }
 
 .controls > #gameButton {
-    grid-row: 3;
+    /* padding-inline-start: 2%; */
+    order: 3;
+    text-align: center;
     animation: ease-in;
-    font-size: large;
+    font-size: xx-large;
 }
 
 #gameButton {
@@ -50,36 +55,37 @@ body {
         background: #3F83F1;
     }
 
-/* .controls > #gameButton:hover {
-    background-color: silver;
-    gap: 1em;
-} */
-
 .card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
     text-align: center;
-    align-items: center;
-    grid-row: 1 / span 2;
-    grid-column: 2;
     background-color: rgb(145, 168, 101);
-    display: grid;
-    /* grid-template-rows: 1fr 2fr; */
-    /* grid-auto-rows: minmax(30px, auto); */
 }
 
 .card > .question {
+    display: flex;
     box-sizing: border-box;
-    height: 100%;
-    font-size: x-large;
+    /* flex-grow: 2; */
+    /* box-sizing: border-box;
+    height: 100%; */
+    font-size: larger;
     background-color: rgb(112, 138, 63);
-    padding: 30px;
+    padding: 5vmin;
+    text-align: center;
 }
 
 .card > .choices {
-    display: grid;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
 .correct {
+    display: flex;
     background-color: yellowgreen;
 }
 
@@ -88,48 +94,46 @@ body {
 }
 
 .card > .choices > p {
-    box-sizing: border-box;
-    height: 100%;
+    display: flex;
+    text-align: center;
+    /* flex-basis: fill; */
+    /* box-sizing: border-box; */
+    /* height: 100%; */
     font-size: large;
-    align-content: center;
-    padding: 10px;
+    align-content: stretch;
+    /* padding-inline-start:  10vmin;
+    padding-inline-end:  10vmax; */
+    /* flex-grow: 2; */
+    /* padding-top: 5vmin;
+    padding-bottom: 5vmin; */
+    padding: 5vmin;
 }
 
 .guess:hover {
     background-color: rgb(228, 225, 92);
 }
 
-.card > .guess {
-    box-sizing: border-box;
-    height: 100%;
-    display: grid;
-    align-items: center;
-}
 
 .scores {
-    grid-column: 1 / span 1;
-    grid-row: 2 / span 1;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-grow: 2;
     text-align: center;
+    align-content: center;
+    align-items: stretch;
+    size: unset;
     background-color: rgb(219, 159, 99);
 }
 
 .scores > div {
+    display: flex;
     box-sizing: border-box;
-    height: 100%;
-    padding: 30px;
+    align-content: center;
+    padding: 10%;
 }
 
-.scores > .gauge {
-    box-sizing: border-box;
-    height: 100%;
-    align-content: inherit;
-    grid-row: 1 / span 3;
-}
 
 footer {
-    grid-column: 1 / 3;
+    display:flex;
 }
 
 /* * {

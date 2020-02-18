@@ -129,8 +129,11 @@ function clearChoices() {
 function writeChoices(choices) {
     //clear previously assigned choices
     clearChoices()
+    //disable next question button
+    gameButton.disabled = true
     //shuffle choices
     shuffle(choices)
+    //listen for player's guess
     choices.forEach(function (choice) {
         let newP = document.createElement('p')
         newP.textContent = translateSpecials(choice)
@@ -150,6 +153,7 @@ const selectAnswer = function (event) {
    
     correctScoreElement.textContent = `correct ${correct}`
     incorrectScoreElement.textContent = `incorrect ${incorrect}`
+
     
     if (questionsRemaining > 0) {
     } else {
@@ -207,8 +211,12 @@ function translateSpecials(str) {
     str = str.replace(('&quot;', 'gi'), '"')
     str = str.replace('&ldquo;', '"')
     str = str.replace('&rdquo;', '"')
-    str = str.replace('&quot;', '"')
+    str = str.replace('&aring;', 'å')
+    str = str.replace('&hellip;', '...')
+    str = str.replace('&auml;', 'ä')
     str = str.replace('&amp;', '&')
+    str = str.replace('&rsquo;', '`')
+    str = str.replace('&quot;', '"')
     str = str.replace('&quot;', '"')
     str = str.replace('&quot;', '"')
     str = str.replace('&quot;', '"')
