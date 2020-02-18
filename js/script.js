@@ -71,11 +71,12 @@ getSessionToken()
 //connect to open trivia database api and retrieve a batch of questions for a new game
 function getQuestions() {
     //clear question variable to accept new questions
+    questionElement.textContent = ''
+    questionElement.classList.replace('incorrect','question')
     playedQuestions = 0
     correct = 0
     incorrect = 0
     questionQueue = []
-    questionElement.classList.replace('incorrect','question')
     categoryIndex = categoryElement
     categoryElement.disabled = true
     categoryChoice = categoryElement.value
