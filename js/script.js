@@ -39,7 +39,7 @@ function getSessionToken() {
 getSessionToken()
 
 //connect to open trivia database api and retrieve a batch of questions for a new game
-function getQuestions() {
+function startGame() {
     //reset game variables for a new game
     questionElement.textContent = ''
     questionElement.classList.replace('lost', 'question')
@@ -121,7 +121,7 @@ function clearChoices() {
 
 //behavior when player chooses thier answer (disable listener for subsequent answers, provide answer feedback and enable next question to be played)
 const selectAnswer = function (event) {
-    disableListen()
+    // disableListen()
     gameButton.disabled = false
     let guessClick = ''
     guessClick = event.target.innerHTML
@@ -138,23 +138,13 @@ const selectAnswer = function (event) {
 
     correctScoreElement.textContent = `correct ${correct}`
     incorrectScoreElement.textContent = `incorrect ${incorrect}`
+    questionsRemaining > 0 ? '' : endGame()
 
-    if (questionsRemaining > 0) {
-    } else {
-        endGame()
-    }
-
-    //remove event listener - to refactor
-    function disableListen() {
-        document.querySelectorAll('.guess')[0].removeEventListener('click', selectAnswer)
-        document.querySelectorAll('.guess')[1].removeEventListener('click', selectAnswer)
-        document.querySelectorAll('.guess')[2].removeEventListener('click', selectAnswer)
-        document.querySelectorAll('.guess')[3].removeEventListener('click', selectAnswer)
-        document.querySelectorAll('.guess')[0].classList.remove('guess')
-        document.querySelectorAll('.guess')[0].classList.remove('guess')
-        document.querySelectorAll('.guess')[0].classList.remove('guess')
-        document.querySelectorAll('.guess')[0].classList.remove('guess')
-    }
+    //remove event listener and format answers as 'frozen'
+    document.querySelectorAll('.guess').forEach(function (guess) {
+        guess.removeEventListener('click', selectAnswer)
+        guess.classList.remove('guess')
+    })
 }
 
 function endGame() {
@@ -163,7 +153,7 @@ function endGame() {
     categoryElement.disabled = false
     questionCountElement.disabled = false
     gameButton.textContent = '↻'
-    gameButton.onclick = function () { getQuestions() }
+    gameButton.onclick = function () { startGame() }
 
     if (correct > incorrect) {
         questionElement.textContent = 'Y O U W O N !'
@@ -192,6 +182,7 @@ function shuffle(array) {
     }
 }
 
+//score board object to store and evaluate game win/loss totals
 class scoreBoard {
     constructor() {
         this.wins = 0
