@@ -41,6 +41,8 @@ getSessionToken()
 //connect to open trivia database api and retrieve a batch of questions for a new game
 function getQuestions() {
     //reset game variables for a new game
+    correctScoreElement.textContent = `correct 0`
+    incorrectScoreElement.textContent = `incorrect 0`
     questionElement.textContent = ''
     questionElement.classList.replace('lost', 'question')
     playedQuestions = 0
