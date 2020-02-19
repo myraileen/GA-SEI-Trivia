@@ -43,8 +43,8 @@ function startGame() {
     //reset game variables for a new game
     questionElement.textContent = ''
     questionElement.classList.replace('lost', 'question')
-    correctScoreElement.textContent = `correct ${correct}`
-    incorrectScoreElement.textContent = `incorrect ${incorrect}`
+    correctScoreElement.textContent = `${correct} correct`
+    incorrectScoreElement.textContent = `${incorrect} incorrect`
     gameButton.onclick = function () { nextQuestion() }
     gameButton.textContent = '⇨'
     categoryIndex = categoryElement
@@ -136,8 +136,8 @@ const selectAnswer = function (event) {
         animateCSS('.incorrect', 'shake')
     }
 
-    correctScoreElement.textContent = `correct ${correct}`
-    incorrectScoreElement.textContent = `incorrect ${incorrect}`
+    correctScoreElement.textContent = `${correct} correct`
+    incorrectScoreElement.textContent = `${incorrect} incorrect`
     questionsRemaining > 0 ? '' : endGame()
 
     //remove event listener and format answers as 'frozen'
@@ -164,8 +164,8 @@ function endGame() {
         triviaScoreBoard.addLoss()
     }
 
-    correctScoreElement.textContent = `${triviaScoreBoard.wins} won`
-    incorrectScoreElement.textContent = `${triviaScoreBoard.losses} lost`
+    correctScoreElement.textContent = `won ${triviaScoreBoard.wins}`
+    incorrectScoreElement.textContent = `lost ${triviaScoreBoard.losses}`
 }
 //Fisher-Yates Algorithm to randomly shuffle an array
 function shuffle(array) {
