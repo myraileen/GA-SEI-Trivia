@@ -190,10 +190,13 @@ class scoreBoard {
     }
     addWin() {
         localStorage.triviaWins ? localStorage.triviaWins = Number(localStorage.triviaWins) + 1 : localStorage.triviaWins = 1
+        localStorage.triviaLosses ? localStorage.triviaLosses = Number(localStorage.triviaLosses) : localStorage.triviaLosses
         this.wins = localStorage.triviaWins
         this.losses = localStorage.triviaLosses
     }
     addLoss() {
+        
+        localStorage.triviaWins ? localStorage.triviaWins = Number(localStorage.triviaWins) : localStorage.triviaWins = 1
         localStorage.triviaLosses ? localStorage.triviaLosses = Number(localStorage.triviaLosses) + 1 : localStorage.triviaLosses = 1
         this.wins = localStorage.triviaWins
         this.losses = localStorage.triviaLosses
