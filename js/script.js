@@ -155,7 +155,7 @@ const selectAnswer = function (event) {
     guessClick = event.target.innerHTML
     correctAnswer === guessClick ? correct = correct + 1 : incorrect = incorrect + 1
     correctAnswer === guessClick ? event.target.classList.add('correct') : event.target.classList.add('incorrect') 
-    // animateCSS('.correct','heartBeat')
+    animateCSS('.correct','heartBeat')
     // animateCSS('.incorrect','hinge')
    
     correctScoreElement.textContent = `correct ${correct}`
