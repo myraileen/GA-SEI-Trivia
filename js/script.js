@@ -41,7 +41,7 @@ getSessionToken()
 function getQuestions() {
     //reset game variables for a new game
     questionElement.textContent = ''
-    questionElement.classList.replace('lost','question')
+    questionElement.classList.replace('lost', 'question')
     playedQuestions = 0
     correct = 0
     incorrect = 0
@@ -77,7 +77,7 @@ function nextQuestion() {
 
     //assign question text and answer
     questionElement.textContent = translateSpecials(question.question)
-    animateCSS('.question','pulse')
+    animateCSS('.question', 'pulse')
     correctAnswer = translateSpecials(question.correct_answer)
     let responseChoices = (question.incorrect_answers)
     responseChoices.push(correctAnswer)
@@ -117,14 +117,22 @@ function clearChoices() {
 }
 
 //behavior when player chooses thier answer (disable listener for subsequent answers, provide answer feedback and enable next question to be played)
-const selectAnswer = function (event) { 
+const selectAnswer = function (event) {
     disableListen()
     gameButton.disabled = false
     let guessClick = ''
     guessClick = event.target.innerHTML
-    correctAnswer === guessClick ? correct = correct + 1 : incorrect = incorrect + 1
-    correctAnswer === guessClick ? event.target.classList.add('correct') : event.target.classList.add('incorrect') 
-   
+    if (correctAnswer === guessClick) {
+        correct = correct + 1
+        event.target.classList.add('correct')
+        animateCSS('.correct', 'heartBeat')
+    } else {
+        incorrect = incorrect + 1
+        event.target.classList.add('incorrect')
+        event.target.classList.remove('animated')
+        animateCSS('.incorrect', 'shake')
+    }
+
     correctScoreElement.textContent = `correct ${correct}`
     incorrectScoreElement.textContent = `incorrect ${incorrect}`
 
@@ -133,29 +141,29 @@ const selectAnswer = function (event) {
         endGame()
     }
 
- //remove event listener - to refactor
- function disableListen() {
-    document.querySelectorAll('.guess')[0].removeEventListener('click',selectAnswer)
-    document.querySelectorAll('.guess')[1].removeEventListener('click',selectAnswer)
-    document.querySelectorAll('.guess')[2].removeEventListener('click',selectAnswer)
-    document.querySelectorAll('.guess')[3].removeEventListener('click',selectAnswer)
-    document.querySelectorAll('.guess')[0].classList.remove('guess')
-    document.querySelectorAll('.guess')[0].classList.remove('guess')
-    document.querySelectorAll('.guess')[0].classList.remove('guess')
-    document.querySelectorAll('.guess')[0].classList.remove('guess')
- }
+    //remove event listener - to refactor
+    function disableListen() {
+        document.querySelectorAll('.guess')[0].removeEventListener('click', selectAnswer)
+        document.querySelectorAll('.guess')[1].removeEventListener('click', selectAnswer)
+        document.querySelectorAll('.guess')[2].removeEventListener('click', selectAnswer)
+        document.querySelectorAll('.guess')[3].removeEventListener('click', selectAnswer)
+        document.querySelectorAll('.guess')[0].classList.remove('guess')
+        document.querySelectorAll('.guess')[0].classList.remove('guess')
+        document.querySelectorAll('.guess')[0].classList.remove('guess')
+        document.querySelectorAll('.guess')[0].classList.remove('guess')
+    }
 
 }
 
 function endGame() {
     clearChoices()
-    
+
     categoryElement.disabled = false
     questionCountElement.disabled = false
     gameButton.textContent = '↻'
     gameButton.onclick = function () { startGame() }
     correct > incorrect ? questionElement.textContent = 'Y O U W O N !' : questionElement.textContent = 'T R Y A G A I N .'
-    correct > incorrect ? '' : questionElement.classList.replace('question','lost')
+    correct > incorrect ? '' : questionElement.classList.replace('question', 'lost')
 }
 
 //Fisher-Yates Algorithm to randomly shuffle an array
