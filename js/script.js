@@ -43,6 +43,8 @@ function startGame() {
     //reset game variables for a new game
     questionElement.textContent = ''
     questionElement.classList.replace('lost', 'question')
+    correct = 0
+    incorrect = 0
     correctScoreElement.textContent = `${correct} correct`
     incorrectScoreElement.textContent = `${incorrect} incorrect`
     gameButton.onclick = function () { nextQuestion() }
@@ -54,8 +56,6 @@ function startGame() {
     howManyQuestions = questionCountElement.value
     gameButton.disabled = true
     playedQuestions = 0
-    correct = 0
-    incorrect = 0
     questionQueue = []
 
     //retrieve questions data
