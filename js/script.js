@@ -37,37 +37,6 @@ function getSessionToken() {
 }
 getSessionToken()
 
-////attempted to write a reusable function to get api data... but it wasn't working... keeping attempt to revisit
-// function getTriviaApiData(inUrl) {
-//     //console.log(inUrl)
-//     axios({
-//         url: inUrl,
-//         method: 'get'
-//     })
-//         .then(response => {
-//             response = [response.data.results]
-//             console.log(response)
-//             return response
-//         })
-//         .catch(error => {
-//             console.log(error)
-//         })
-// }
-////get session token
-// function getSessionToken() {
-// let sessionToken = getTriviaApiData('https://opentdb.com/api_token.php?command=request')
-// console.log(sessionToken)
-// }
-////retrieve a batch of questions for a new game
-// function getQuestions() {
-//     //clear question variable to accept new questions
-//     playedQuestions = 0
-//     questionQueue = []
-//     questionQueue = getTriviaApiData(`https://opentdb.com/api.php?amount=${howManyQuestions}&category=23&type=multiple`)
-//     questionQueue = [1]
-//     nextQuestion()
-// }
-
 //connect to open trivia database api and retrieve a batch of questions for a new game
 function getQuestions() {
     //reset game variables for a new game
@@ -155,8 +124,6 @@ const selectAnswer = function (event) {
     guessClick = event.target.innerHTML
     correctAnswer === guessClick ? correct = correct + 1 : incorrect = incorrect + 1
     correctAnswer === guessClick ? event.target.classList.add('correct') : event.target.classList.add('incorrect') 
-    animateCSS('.correct','heartBeat')
-    // animateCSS('.incorrect','hinge')
    
     correctScoreElement.textContent = `correct ${correct}`
     incorrectScoreElement.textContent = `incorrect ${incorrect}`
@@ -178,9 +145,6 @@ const selectAnswer = function (event) {
     document.querySelectorAll('.guess')[0].classList.remove('guess')
  }
 
-    // if questionsRemaining = 0
-
-    //do a check on questionsRemaining... if it is the last question, end game after selection is made
 }
 
 function endGame() {
