@@ -1,5 +1,5 @@
 * {
-    font-family: 'Ubuntu', serif;
+    font-family: 'Ubuntu',  serif;
 }
 
 body {
@@ -7,7 +7,13 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: stretch;
+    padding: 2px;
     margin: auto repeat(2px, 4);
+}
+.header {
+    font-family: 'Bungee', cursive;
+    font-size: x-large;
+    padding: 2px;
 }
 .controls {
     display: flex;
@@ -16,7 +22,7 @@ body {
     flex-grow: 2;
     text-align: center;
     padding: 1pc;
-    background-color: rgb(219, 159, 99);
+    background-color: rgb(193, 211, 236);
 }
 
 .controls > #selectCount {
@@ -66,23 +72,24 @@ body {
 .card > .question {
     font-size: larger;
     background-color: rgb(112, 138, 63);
-    padding: 5vmin;
+    padding: 10px;
     text-align: center;
 }
 
 .correct {
-    background-color: yellowgreen;
+    background-color: rgb(112, 138, 63);
+    text-align: center;
 }
 
 .incorrect {
-    background-color: rgb(197, 106, 106) ;
+    background-color: rgb(181, 113, 113) ;
     padding: 5vmin;
 }
 
-.choices > p {
+.choices > .guess {
     font-size: large;
     align-content: stretch;
-    padding: 1vh;
+    padding: 2px;
 }
 
 .guess:hover {
@@ -94,7 +101,7 @@ body {
     text-align: center;
     align-content: center;
     align-items: stretch;
-    background-color: rgb(219, 159, 99);
+    background-color: rgb(193, 211, 236);
     padding: 1pc;
 }
 
