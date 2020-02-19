@@ -11,9 +11,11 @@ body {
     margin: auto repeat(2px, 4);
 }
 .header {
+    background-color: rgb(112, 138, 63);
     font-family: 'Bungee', cursive;
     font-size: x-large;
-    padding: 2px;
+    padding: 3px;
+    text-align: center;
 }
 .controls {
     display: flex;
@@ -79,14 +81,22 @@ body {
 .correct {
     background-color: rgb(112, 138, 63);
     text-align: center;
+    padding: 3px;
 }
 
 .incorrect {
     background-color: rgb(181, 113, 113) ;
-    padding: 5vmin;
+    text-align: center;
+    padding: 3px;
+}
+.lost {
+    background-color: rgb(181, 113, 113) ;
+    text-align: center;
+    font-size: larger;
+    padding: 20px;
 }
 
-.choices > .guess {
+.choices > p {
     font-size: large;
     align-content: stretch;
     padding: 2px;
@@ -97,17 +107,22 @@ body {
 }
 
 .scores {
-    display: inline;
-    text-align: center;
-    align-content: center;
-    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    place-content: center;
     background-color: rgb(193, 211, 236);
-    padding: 1pc;
+    
 }
 
 .scores > div {
-    display: inline;
-    padding: 10px 10px;
+    display: flex;
+    align-items: stretch;
+    align-content: center;
+    text-align: center;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    margin: 20px;
+    font-size: large;
 }
 
 footer {

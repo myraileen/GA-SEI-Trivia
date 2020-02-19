@@ -72,7 +72,7 @@ getSessionToken()
 function getQuestions() {
     //reset game variables for a new game
     questionElement.textContent = ''
-    questionElement.classList.replace('incorrect','question')
+    questionElement.classList.replace('lost','question')
     playedQuestions = 0
     correct = 0
     incorrect = 0
@@ -108,6 +108,7 @@ function nextQuestion() {
 
     //assign question text and answer
     questionElement.textContent = translateSpecials(question.question)
+    animateCSS('.question','pulse')
     correctAnswer = translateSpecials(question.correct_answer)
     let responseChoices = (question.incorrect_answers)
     responseChoices.push(correctAnswer)
@@ -132,7 +133,7 @@ function writeChoices(choices) {
     choices.forEach(function (choice) {
         let newP = document.createElement('p')
         newP.textContent = translateSpecials(choice)
-        newP.setAttribute('class', 'guess')
+        newP.setAttribute('class', 'guess animated pulse')
         newP.addEventListener('click', selectAnswer)
         choicesElement.appendChild(newP)
     })
@@ -153,7 +154,9 @@ const selectAnswer = function (event) {
     let guessClick = ''
     guessClick = event.target.innerHTML
     correctAnswer === guessClick ? correct = correct + 1 : incorrect = incorrect + 1
-    correctAnswer === guessClick ? event.target.classList.add('correct') : event.target.classList.add('incorrect')
+    correctAnswer === guessClick ? event.target.classList.add('correct') : event.target.classList.add('incorrect') 
+    // animateCSS('.correct','heartBeat')
+    // animateCSS('.incorrect','hinge')
    
     correctScoreElement.textContent = `correct ${correct}`
     incorrectScoreElement.textContent = `incorrect ${incorrect}`
@@ -188,7 +191,7 @@ function endGame() {
     gameButton.textContent = '↻'
     gameButton.onclick = function () { startGame() }
     correct > incorrect ? questionElement.textContent = 'Y O U W O N !' : questionElement.textContent = 'T R Y A G A I N .'
-    correct > incorrect ? '' : questionElement.classList.replace('question','incorrect')
+    correct > incorrect ? '' : questionElement.classList.replace('question','lost')
 }
 
 //Fisher-Yates Algorithm to randomly shuffle an array
@@ -208,6 +211,20 @@ function shuffle(array) {
 
 function startGame() {
     getQuestions()
+}
+
+function animateCSS(element, animationName, callback) {
+    const node = document.querySelector(element)
+    node.classList.add('animated', animationName)
+
+    function handleAnimationEnd() {
+        node.classList.remove('animated', animationName)
+        node.removeEventListener('animationend', handleAnimationEnd)
+
+        if (typeof callback === 'function') callback()
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd)
 }
 
 //testing revealed api data contains special characters needing string translation

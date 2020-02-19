@@ -15,8 +15,8 @@ Upon loading the game into the browser, once a game is started, the player will 
 
 ## Technologies used:  
 * Open Triva Database _(https://opentdb.com)_ created by Pixeltail Games. LLC, a free to use, user contributed trivia question database.  
-  
 * Google Fonts _(https://fonts.google.com)_  
+* CSS Animate library
 * HTML validated with HTML5 Validator _(https://html5.validator.nu/)_  
 * CSS validated with CSS Validator _(https://jigsaw.w3.org/css-validator/)_  
 
