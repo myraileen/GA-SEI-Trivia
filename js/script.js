@@ -21,6 +21,7 @@ let questionQueue = []
 let correctAnswer = ''
 let correct = 0
 let incorrect = 0
+let triviaScoreBoard = ''
 
 //connect to api and retrieve a session token: including the token in question api calls will prevent duplicates in the response data while the token is active (6 hours max)
 function getSessionToken() {
@@ -152,7 +153,6 @@ const selectAnswer = function (event) {
         document.querySelectorAll('.guess')[0].classList.remove('guess')
         document.querySelectorAll('.guess')[0].classList.remove('guess')
     }
-
 }
 
 function endGame() {
@@ -162,10 +162,19 @@ function endGame() {
     questionCountElement.disabled = false
     gameButton.textContent = '↻'
     gameButton.onclick = function () { startGame() }
-    correct > incorrect ? questionElement.textContent = 'Y O U W O N !' : questionElement.textContent = 'T R Y A G A I N .'
-    correct > incorrect ? '' : questionElement.classList.replace('question', 'lost')
-}
 
+    if (correct > incorrect) {
+        questionElement.textContent = 'Y O U W O N !'
+        triviaScoreBoard.addWin()
+    } else {
+        questionElement.textContent = 'T R Y A G A I N .'
+        questionElement.classList.replace('question', 'lost')
+        triviaScoreBoard.addLoss()
+    }
+
+    correctScoreElement.textContent = `${triviaScoreBoard.wins} won`
+    incorrectScoreElement.textContent = `${triviaScoreBoard.losses} lost`
+}
 //Fisher-Yates Algorithm to randomly shuffle an array
 function shuffle(array) {
     var i = 0
@@ -180,6 +189,32 @@ function shuffle(array) {
         return array
     }
 }
+
+class scoreBoard {
+    constructor() {
+        this.wins = 0
+        this.losses = 0
+    }
+    addWin() {
+        console.log('win')
+        if (localStorage.triviaWins) {
+            localStorage.triviaWins = Number(localStorage.triviaWins) + 1
+        } else {
+            localStorage.triviaWins = 1
+        }
+        this.wins = localStorage.triviaWins
+    }
+    addLoss() {
+        console.log('lose')
+        if (localStorage.triviaLosses) {
+            localStorage.triviaLosses = Number(localStorage.triviaLosses) + 1
+        } else {
+            localStorage.triviaLosses = 1
+        }
+        this.losses = localStorage.triviaLosses
+    }
+}
+triviaScoreBoard = new scoreBoard()
 
 function startGame() {
     getQuestions()
