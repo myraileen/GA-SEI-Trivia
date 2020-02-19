@@ -41,22 +41,22 @@ getSessionToken()
 //connect to open trivia database api and retrieve a batch of questions for a new game
 function getQuestions() {
     //reset game variables for a new game
-    correctScoreElement.textContent = `correct 0`
-    incorrectScoreElement.textContent = `incorrect 0`
     questionElement.textContent = ''
     questionElement.classList.replace('lost', 'question')
-    playedQuestions = 0
-    correct = 0
-    incorrect = 0
-    questionQueue = []
+    correctScoreElement.textContent = `correct ${correct}`
+    incorrectScoreElement.textContent = `incorrect ${incorrect}`
+    gameButton.onclick = function () { nextQuestion() }
+    gameButton.textContent = '⇨'
     categoryIndex = categoryElement
     categoryElement.disabled = true
     categoryChoice = categoryElement.value
     questionCountElement.disabled = true
     howManyQuestions = questionCountElement.value
-    gameButton.textContent = '⇨'
-    gameButton.onclick = function () { nextQuestion() }
     gameButton.disabled = true
+    playedQuestions = 0
+    correct = 0
+    incorrect = 0
+    questionQueue = []
 
     //retrieve questions data
     axios({
@@ -163,7 +163,7 @@ function endGame() {
     categoryElement.disabled = false
     questionCountElement.disabled = false
     gameButton.textContent = '↻'
-    gameButton.onclick = function () { startGame() }
+    gameButton.onclick = function () { getQuestions() }
 
     if (correct > incorrect) {
         questionElement.textContent = 'Y O U W O N !'
@@ -198,29 +198,18 @@ class scoreBoard {
         this.losses = 0
     }
     addWin() {
-        console.log('win')
-        if (localStorage.triviaWins) {
-            localStorage.triviaWins = Number(localStorage.triviaWins) + 1
-        } else {
-            localStorage.triviaWins = 1
-        }
+        localStorage.triviaWins ? localStorage.triviaWins = Number(localStorage.triviaWins) + 1 : localStorage.triviaWins = 1
         this.wins = localStorage.triviaWins
+        this.losses = localStorage.triviaLosses
     }
     addLoss() {
-        console.log('lose')
-        if (localStorage.triviaLosses) {
-            localStorage.triviaLosses = Number(localStorage.triviaLosses) + 1
-        } else {
-            localStorage.triviaLosses = 1
-        }
+        localStorage.triviaLosses ? localStorage.triviaLosses = Number(localStorage.triviaLosses) + 1 : localStorage.triviaLosses = 1
+        this.wins = localStorage.triviaWins
         this.losses = localStorage.triviaLosses
     }
 }
-triviaScoreBoard = new scoreBoard()
 
-function startGame() {
-    getQuestions()
-}
+triviaScoreBoard = new scoreBoard()
 
 function animateCSS(element, animationName, callback) {
     const node = document.querySelector(element)
