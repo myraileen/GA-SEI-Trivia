@@ -9,10 +9,16 @@ body {
     align-content: stretch;
     padding: 2px;
     margin: auto;
-    width: 480px;
+    width: 600px;
     background-color: rgb(145, 168, 101);;
     border: dimgray 1px solid;
 }
+@media screen and (min-width: 361px) and (max-width: 480px) {
+    body {
+      width: 95vw;
+    }
+  }
+
 .header {
     background-color: rgb(112, 138, 63);
     font-family: 'Bungee', cursive;

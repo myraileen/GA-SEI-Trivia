@@ -1,4 +1,4 @@
-# Trivia Game  
+# [Trivia Game] (https://myraileen.github.io/GA-SEI-Trivia) 
 
 ## How to play:  
 * Select game options:  
@@ -24,3 +24,4 @@ Once game play begins by clicking the start button:
 * Guidance for how to shuffle an array was referenced from Mike Bostock's blog-post about coding the Fisher-Yates Algorithm in javascript.  
   - _(https://bost.ocks.org/mike/shuffle)_  
   - _(https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates')_  
+* GitHub used for revision history and control: repository for the game is available at (https://github.com/myraileen/GA-SEI-Trivia)
