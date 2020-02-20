@@ -113,7 +113,8 @@ body {
     display: flex;
     flex-direction: row;
     place-content: center;
-    align-content: center;
+    /* align-content: center; */
+    align-items: stretch;
     background-color: rgb(193, 211, 236);
     
 }
@@ -123,10 +124,10 @@ body {
     align-items: stretch;
     align-content: stretch;
     text-align: center;
-    /* padding-left: 20;
-    padding-right: 15vw; */
     margin: 10px;
-    font-size: large;
+    padding-left: 35px;
+    padding-right: 35px;
+    font-size: medium;
 }
 
 footer {
