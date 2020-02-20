@@ -1,18 +1,14 @@
 # Trivia Game 
 
-## How to play:  
+## How to play:
 * Open game in browser (https://myraileen.github.io/GA-SEI-Trivia)
 * Select game options:  
   - Choose a question category  
   - Choose how many questions to play  
 * **Click start!**  
-
-### UX expected features  
-Once game play begins by clicking the start button:
-* The number of questions from the selected category will be presented to the player. 
-  - During game play, the category and number of questions to play cannot be changed.  
-* Upon answering a question the player's score is updated to show questions answered correctly and incorrectly.  
-* When all questions have been answered, the win status for current and previously played games is displayed and a new game can be started. 
+  - The number of questions from the selected category will be presented until all questions have been answered.  
+  - Upon answering a question the score is updated to show questions answered correctly and incorrectly.  
+  - When all questions have been answered, the win status for current and previously played games is displayed and a new game can be started. 
   
 ## Technologies used, Acknowledgements and Credits
 * HTML validated with HTML5 Validator _(https://html5.validator.nu/)_  
@@ -21,8 +17,25 @@ Once game play begins by clicking the start button:
 * CSS Animate library _(https://daneden.github.io/animate.css/)_
 * Google Fonts _(https://fonts.google.com)_  
 * Open Triva Database _(https://opentdb.com)_ created by Pixeltail Games. LLC, a free to use, user contributed trivia question database.  
-  - _Game play technical consideration: with each browser refresh, a session token is obtained from the game's data-service (https://opentdb.com) which prevents the same question from presenting to the player during the browser session. If the player consumes the limited number of questions available, the browser would need to be refreshed. Consequently, the player could be presented with repeat questions. (A 'gold' version of this game could check the remaining number of questions in the category and automatically obtain a new session token)_  
+* Postman (postman.com) used to test API connection and URLs.
 * Guidance for how to shuffle an array was referenced from Mike Bostock's blog-post about coding the Fisher-Yates Algorithm in javascript.  
   - _(https://bost.ocks.org/mike/shuffle)_  
   - _(https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates')_  
-* GitHub used for revision history and control: repository for the game is available at (https://github.com/myraileen/GA-SEI-Trivia)
+* GitHub used for revision history and control: repository for the game is available at (https://github.com/myraileen/GA-SEI-Trivia).
+
+## Developer Notes
+My approach to deliver this project centered on meeting all the minimum requirements while touching on the topics covered during the SEI class so far. Once I chose Trivia as the game to develop, I sketched out a miniumal viable product (MVP) wireframe and concept on a piece of notebook paper (https://github.com/myraileen/GA-SEI-Trivia/tree/master/images/wireframe.jpg).
+
+I wanted to use an API for the question content so I searched the internet for a free and well documented API that appeared to be stable and have a user base. I landed on the _**Open Trivia Database**_ API and found I was able to connect to it using the Postman app.
+
+I roughed out basic html, css and javascript and got the API connection working in the direction of my wireframe concept. As I tested, I found I received the same question back from the API many times. Looking at their documentation, they had a remedy to this by implementing a session token. I followed the API documentation and implemented the token. 
+
+The correct answer needed to be shuffled into the incorrect answers, so I searched for a way to do that and found the Fisher-Yates Algorithm was touted as the best way and a blogpost from Mike Bostock demonstrated this algorithm in javascript. 
+
+I wanted the user interface to be very simple and intuitive needing only visual cues to play. I introduced drop-down and button enabling and disabling to force game flow and I got event listeners setup when a new question was played. 
+
+I added a scoreboard class to use local storage to keep track of total game wins and losses and this was a good learning experience: if the storage key doesn't exist it must be created, for example (to avoid 'undefined' and 'NaN' evaluations).
+
+I changed the final UI layout to single column, moving away from the two column design I originally sketched. I did this because I wanted the screen to fit nicely on mobile devices and the learning curve to implement breakpoints and @media CSS queries went beyond my will for the project... but I did have some good learnings around responsive design that I would consider in future projects at the start. 
+
+I added some user feedbacks with the **CSS Animate** library that were fun to play with and refactored and cleaned my code. Fun project... I enjoyed it a lot!
