@@ -1,6 +1,7 @@
-# [Trivia Game] (https://myraileen.github.io/GA-SEI-Trivia) 
+# Trivia Game 
 
 ## How to play:  
+* Open game in browser (https://myraileen.github.io/GA-SEI-Trivia)
 * Select game options:  
   - Choose a question category  
   - Choose how many questions to play  
