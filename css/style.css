@@ -9,6 +9,9 @@ body {
     align-content: stretch;
     padding: 2px;
     margin: auto;
+    width: 600px;
+    background-color: rgb(145, 168, 101);;
+    border: dimgray 1px solid;
 }
 .header {
     background-color: rgb(112, 138, 63);
@@ -31,6 +34,7 @@ body {
     order: 2;
     font-size: large;
     padding: 1vh;
+    background-color: azure;
 }
 
 .controls > #selectCategory {
@@ -38,6 +42,7 @@ body {
     font-size: large;
     text-align: center;
     padding: 1vh;
+    background-color: azure;
 }
 
 .controls > #gameButton {
@@ -108,6 +113,7 @@ body {
     display: flex;
     flex-direction: row;
     place-content: center;
+    align-content: center;
     background-color: rgb(193, 211, 236);
     
 }
@@ -115,10 +121,10 @@ body {
 .scores > div {
     display: flex;
     align-items: stretch;
-    align-content: center;
+    align-content: stretch;
     text-align: center;
-    padding-left: 15vw;
-    padding-right: 15vw;
+    /* padding-left: 20;
+    padding-right: 15vw; */
     margin: 10px;
     font-size: large;
 }
