@@ -6,19 +6,19 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    padding: 1%;
+    width: 40vw;
     align-content: stretch;
-    padding: 2px;
     margin: auto;
-    width: 600px;
     background-color: rgb(145, 168, 101);;
     border: dimgray 1px solid;
 }
-@media screen and (min-width: 361px) and (max-width: 480px) {
+@media screen and (max-width: 480px) {
     body {
-      width: 95vw;
+        width: 98vw;
+        padding: none;
     }
-  }
-
+}
 .header {
     background-color: rgb(112, 138, 63);
     font-family: 'Bungee', cursive;
@@ -35,14 +35,13 @@ body {
     padding: 1pc;
     background-color: rgb(193, 211, 236);
 }
-
 .controls > #selectCount {
     order: 2;
     font-size: large;
     padding: 1vh;
-    background-color: azure;
+    background-color: azure;    
+    text-align: center;
 }
-
 .controls > #selectCategory {
     order: 1;
     font-size: large;
@@ -50,14 +49,12 @@ body {
     padding: 1vh;
     background-color: azure;
 }
-
 .controls > #gameButton {
     order: 3;
     text-align: center;
     animation: ease-in;
     font-size: xx-large;
 }
-
 #gameButton {
         color: white;
         background: #4C8FFB;
@@ -71,7 +68,6 @@ body {
         box-shadow: 0 4px 4px #EAEAEA, inset 0 4px 0 #5A94F1;
         background: #3F83F1;
     }
-
 .card {
     display: flex;
     flex-wrap: wrap;
@@ -80,19 +76,16 @@ body {
     text-align: center;
     background-color: rgb(145, 168, 101);
 }
-
 .card > .question {
     font-size: larger;
     background-color: rgb(112, 138, 63);
     padding: 10px;
     text-align: center;
 }
-
 .correct {
     background-color: rgb(112, 138, 63);
     text-align: center;
 }
-
 .incorrect {
     background-color: rgb(181, 113, 113) ;
     text-align: center;
@@ -103,18 +96,15 @@ body {
     font-size: larger;
     padding: 20px;
 }
-
 .choices > p {
     font-size: large;
     align-content: stretch;
     cursor: none;
 }
-
 .guess:hover {
     background-color: rgb(228, 225, 92);
     cursor: pointer;
 }
-
 .scores {
     display: flex;
     flex-direction: row;
@@ -124,7 +114,6 @@ body {
     background-color: rgb(193, 211, 236);
     
 }
-
 .scores > div {
     display: flex;
     align-items: stretch;
@@ -135,7 +124,6 @@ body {
     padding-right: 35px;
     font-size: medium;
 }
-
 footer {
     display:flex;
 }
