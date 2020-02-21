@@ -28,7 +28,7 @@ My approach to deliver this project centered on meeting all the minimum requirem
 
 I wanted to use an API for the question content so I searched the internet for a free and well documented API that appeared to be stable and have a user base. I landed on the _**Open Trivia Database**_ API and found I was able to connect to it using the Postman app.
 
-I roughed out basic html, css and javascript and got the API connection working in the direction of my wireframe concept. As I tested, I found I received the same question back from the API many times. Looking at their documentation, they had a remedy to this by implementing a session token. I followed the API documentation and implemented the token. 
+I roughed out basic html, css and javascript and got the API connection working in the direction of my wireframe concept. As I tested, I found I received the same question back from the API many times. Looking at their documentation, they had a remedy for this by implementing a session token. I followed the API documentation and implemented the token. As I familiarized myself with the API, I found some question categories had very few questions in them. I reviewed the number of questions per category and chose to limit my game to only a few categories that had the most qusetions.
 
 The correct answer needed to be shuffled into the incorrect answers, so I searched for a way to do that and found the Fisher-Yates Algorithm was touted as the best way and a blogpost from Mike Bostock demonstrated this algorithm in javascript. 
 
@@ -38,4 +38,11 @@ I added a scoreboard class to use local storage to keep track of total game wins
 
 I changed the final UI layout to single column, moving away from the two column design I originally sketched. I did this because I wanted the screen to fit nicely on mobile devices and the learning curve to implement breakpoints and @media CSS queries went beyond my will for the project... but I did have some good learnings around responsive design that I would consider in future projects at the start. 
 
-I added some user feedbacks with the **CSS Animate** library that were fun to play with and refactored and cleaned my code. Fun project... I enjoyed it a lot!
+I added some user feedbacks with the **CSS Animate** library that were fun to play with and refactored and cleaned my code. If I were to continue to build it out, I would:
+  - change the game button to a countdown timer when a new question is played
+  - show question correct/incorrect status as a graph/meter/gauge
+  - add a multi-player mode
+  - add a feature for players to see the correct answer if they got it wrong
+  - responsively adapting the game layout based on players display size
+  
+Fun project... I enjoyed it a lot!  
